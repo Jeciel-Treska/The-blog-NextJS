@@ -1,11 +1,30 @@
-import { format, formatDistanceToNow } from "date-fns";
+import {
+  format,
+  formatDistanceToNow as dateFnsFormatDistanceToNow,
+} from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-export function formatDatetime(rawdate: string): string {
-  const date = new Date(rawdate);
-  return format(date, "dd/MM/yyyy 'às' HH'h'mm", { locale: ptBR });
+export function formatDatetime(rawDate: string): string {
+  const date = new Date(rawDate);
+
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+
+  return format(date, "dd/MM/yyyy 'às' HH'h'mm", {
+    locale: ptBR,
+  });
 }
-export function formatRelativeDate(rawdate: string): string {
-  const date = new Date(rawdate);
-  return formatDistanceToNow(date, { locale: ptBR, addSuffix: true });
+
+export function formatDistanceToNow(rawDate: string): string {
+  const date = new Date(rawDate);
+
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+
+  return dateFnsFormatDistanceToNow(date, {
+    locale: ptBR,
+    addSuffix: true,
+  });
 }

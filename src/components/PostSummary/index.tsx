@@ -1,3 +1,4 @@
+import { PostDate } from "../PostDate";
 import { PostHeading } from "../PostHeading";
 
 type PostSummaryProps = {
@@ -17,13 +18,7 @@ export function PostSummary({
 }: PostSummaryProps) {
   return (
     <div className="flex flex-col gap-4 sm:justify-center">
-      <time
-        className="text-slate-600 block text-sm/tight"
-        dateTime={dataPost}
-        title=""
-      >
-        {dataPost}
-      </time>
+      <PostDate dateTime={dataPost} />
 
       <PostHeading as={postHeading} url={postLink}>
         {titlePost}
